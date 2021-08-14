@@ -1,0 +1,36 @@
+{
+  "name": "reto-backend",
+  "version": "1.0.0",
+  "description": "reto backend devto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarlosAlcala30/reto-backend.git"
+  },
+  "keywords": [
+    "kodemia",
+    "backend",
+    "reto",
+    "devto"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CarlosAlcala30/reto-backend/issues"
+  },
+  "homepage": "https://github.com/CarlosAlcala30/reto-backend#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
