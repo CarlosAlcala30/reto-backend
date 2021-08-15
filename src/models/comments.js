@@ -5,11 +5,7 @@ const commentsSchema = new mongoose.Schema({
         type:String,
         required:true,
         trim:true
-    },
-    createdAt:{
-        type:Date,
-        default: Date.now
-    },
+    },   
     likes: { 
         type: Number, 
         default: 0 
@@ -19,6 +15,9 @@ const commentsSchema = new mongoose.Schema({
         required:true
     },
 
+}, 
+{
+    timestamps: true
 });
 
 const model = mongoose.model('comments',commentsSchema);

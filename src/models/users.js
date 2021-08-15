@@ -13,6 +13,10 @@ const usersSchema = new mongoose.Schemma({
         minlength:2,
         maxLenght:50
     },
+    picture:{
+        type:String,
+        default: 'https://mongoose-os.com/images/generic_user.png'
+    },
     age:{
         type:Number,
         min:1,
@@ -31,6 +35,9 @@ const usersSchema = new mongoose.Schemma({
         type:String,
         required:true
     }
+}, 
+{
+    timestamps: true
 });
 
 const model = mongoose.model('users',usersSchema);
