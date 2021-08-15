@@ -15,10 +15,6 @@ const postsSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    createdAt:{
-        type:Date,
-        default: Date.now
-    },
     likes: { 
         type: Number, 
         default: 0 
@@ -41,6 +37,9 @@ const postsSchema = new mongoose.Schema({
         }
     ]
     
+}, 
+{
+    timestamps: true
 });
 
 const model = mongoose.model('posts',postsSchema);
