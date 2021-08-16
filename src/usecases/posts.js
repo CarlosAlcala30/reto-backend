@@ -1,12 +1,11 @@
 const Post = require('../models/posts')
 
 function getAll() {
-   return Post.find().populate("author").populate("comments")
+   return Post.find().populate("users").populate("comments")
 }
 
  function create (postData) {
-
-   return Post.create({postData})
+   return Post.create(postData)
 }
 
 function deleteById(id) {
