@@ -52,7 +52,7 @@ router.delete('/:id', async (request, response) => {
             success: true,
             message: 'Comment deleted',
             data: {
-                comment = commentDeleted
+                comment : commentDeleted
             }
         })
     } catch (error) {
@@ -90,10 +90,3 @@ router.patch('/:id', async (request, response) => {
 })
 
 module.exports = router
-
-/*estructura del comment
--creator
--Contenido
--date
--post al que pertenece
-*/
