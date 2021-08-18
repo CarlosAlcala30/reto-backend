@@ -1,8 +1,10 @@
 const express = require('express')
 const posts = require('../usecases/posts')
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', async (request, response) => {
+const isAuth = require("../middleware/auth");
+
+router.get('/',isAuth, async (request, response) => {
     try {
       const allPosts = await posts.getAll()
       response.json({
@@ -22,7 +24,7 @@ router.get('/', async (request, response) => {
     }
 })
 
-router.post('/', async (request, response) => {
+router.post('/',isAuth, async (request, response) => {
     try {
         const postData = request.body
         const postCreated = await posts.create(postData)
@@ -44,7 +46,7 @@ router.post('/', async (request, response) => {
     }
 })
 
-router.delete('/:id', async (request, response) => {
+router.delete('/:id',isAuth, async (request, response) => {
     try {
         const { id } = request.params
         const postDelated = await posts.deleteById(id)
@@ -65,7 +67,7 @@ router.delete('/:id', async (request, response) => {
     }
 })
 
-router.patch('/:id', async (request, response) => {
+router.patch('/:id',isAuth, async (request, response) => {
     try {
         const { id } = request.params
         const { body: postData } = request
@@ -89,7 +91,7 @@ router.patch('/:id', async (request, response) => {
     }
 })
 
-router.get('/:id', async (request, response) => {
+router.get('/:id',isAuth, async (request, response) => {
     try {
         const {id} = request.params
         const getPostById = await posts.getPostById(id)
@@ -112,4 +114,4 @@ router.get('/:id', async (request, response) => {
 })
 
 
-module.exports = router
+module.exports = router;

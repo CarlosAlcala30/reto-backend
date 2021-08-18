@@ -8,7 +8,7 @@ function getAll() {
  
 async function create (usersData) {
     const {email, password} = usersData
-    const usersFound =await users.findOne({email})
+    const usersFound =await Users.findOne({email})
     if(usersFound) throw new error ('email of users exist already')
  
     const encryptedPasword = await bcrypt.hash(password)
@@ -32,6 +32,7 @@ async function create (usersData) {
 function getById (id){
     return Users.findById(id)
 }
+
 module.exports = {
     getAll,
     deleteById,

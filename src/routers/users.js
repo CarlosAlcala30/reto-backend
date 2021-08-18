@@ -1,8 +1,10 @@
 const express = require('express')
 const users = require('../usecases/users')
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', async (request, response) => {
+const isAuth = require("../middleware/auth");
+
+router.get('/',isAuth, async (request, response) => {
     try {
       const allUsers = await users.getAll()
       response.json({
@@ -21,7 +23,8 @@ router.get('/', async (request, response) => {
         })
     }
 })
-router.delete('/:id', async (request, response) => {
+
+router.delete('/:id',isAuth, async (request, response) => {
     try {
         const { id } = request.params
       const deleteUsers = await users.deleteById(id)
@@ -41,7 +44,8 @@ router.delete('/:id', async (request, response) => {
         })
     }
 })
-router.patch('/:id', async (request, response) => {
+
+router.patch('/:id',isAuth, async (request, response) => {
     try {
         const { id } = request.params
       const updateUsers = await users.updateById(id)
@@ -62,15 +66,15 @@ router.patch('/:id', async (request, response) => {
     }
 })
 
-router.get('/:id', async (request, response) => {
+router.get('/:id',isAuth, async (request, response) => {
     try {
         const { id } = request.params
       const getUsersById = await users.getById(id)
       response.json({
           success: true,
-          message: 'all user by id',
+          message: 'get user',
           data: {
-              users: allUsers
+              users: getUsersById
           }
       })
     } catch (error) {
@@ -85,14 +89,17 @@ router.get('/:id', async (request, response) => {
 
 router.post('/', async (request, response) => {
     try {
-      const createUsers = await users.create(request.body)
-      response.json({
-          success: true,
-          message: 'user created',
-          data: {
-              users: createUsers
-          }
-      })
+        const {body} = request;
+        console.log(body);
+        const createUsers = await users.create(body)
+        response.json({
+            success: true,
+            message: 'user created',
+            data: {
+                users: createUsers
+            }
+        });
+      
     } catch (error) {
         response.status(400)
         response.json({
@@ -102,11 +109,5 @@ router.post('/', async (request, response) => {
         })
     }
 })
-/*
-    getAll,
-    deleteById,
-    updateById,
-    getById,
-    create*/
 
-module.exports = router
+module.exports = router;
