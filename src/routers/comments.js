@@ -1,8 +1,10 @@
 const express = require('express')
 const comments = require('../usecases/comments.js')
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', async (request, response) => {
+const isAuth = require("../middleware/auth");
+
+router.get('/',isAuth, async (request, response) => {
     try {
         const AllComments = await comments.getAll()
         response.json({
@@ -22,7 +24,7 @@ router.get('/', async (request, response) => {
     }
 })
 
-router.post('/', async (request, response) => {
+router.post('/',isAuth, async (request, response) => {
     try {
         const commentData = request.body
         const commentCreated = await comments.create(commentData)
@@ -44,7 +46,7 @@ router.post('/', async (request, response) => {
     }
 })
 
-router.delete('/:id', async (request, response) => {
+router.delete('/:id',isAuth, async (request, response) => {
     try {
         const { id } = request.params
         const commentDeleted = await comments.deleteById(id)
@@ -65,7 +67,7 @@ router.delete('/:id', async (request, response) => {
     }
 })
 
-router.patch('/:id', async (request, response) => {
+router.patch('/:id',isAuth, async (request, response) => {
     try {
         const { id } = request.params
         const { body: commentData } = request
@@ -84,6 +86,29 @@ router.patch('/:id', async (request, response) => {
         response.json({
             success: false,
             message: 'Comment not updated',
+            error: error.message
+        })
+    }
+})
+
+router.get('/:id',isAuth, async (request, response) => {
+    try {
+        const { id } = request.params
+
+        const comment = await comments.getByID(id)
+
+        response.json({
+            success: true,
+            message: 'Comment Obtained',
+            data: {
+                comment: comment
+            }
+        })
+    } catch (error) {
+        response.status(400)
+        response.json({
+            success: false,
+            message: 'Comment not Obtained',
             error: error.message
         })
     }

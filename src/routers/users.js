@@ -1,8 +1,10 @@
 const express = require('express')
 const users = require('../usecases/users')
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', async (request, response) => {
+const isAuth = require("../middleware/auth");
+
+router.get('/',isAuth, async (request, response) => {
     try {
       const allUsers = await users.getAll()
       response.json({
@@ -21,7 +23,8 @@ router.get('/', async (request, response) => {
         })
     }
 })
-router.delete('/', async (request, response) => {
+
+router.delete('/',isAuth, async (request, response) => {
     try {
       const deleteUsers = await users.deleteById()
       response.json({
@@ -47,7 +50,4 @@ router.delete('/', async (request, response) => {
     getById,
     create*/
 
-module.exports = {
-    allUsers,
-    deleteById
-}
+module.exports = router;

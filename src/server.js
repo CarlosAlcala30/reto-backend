@@ -4,11 +4,13 @@ const server = express();
 const postsRouter = require('./routers/posts');
 const usersRouter = require('./routers/users')
 const commentsRouter = require('./routers/comments');
+const authRouter = require("./routers/auth");
 //middleware
 server.use(express.json());
 //routers
 server.use("/posts",postsRouter);
 server.use("/users",usersRouter);
 server.use("/comments",commentsRouter);
+server.use("/auth",authRouter);
 
 module.exports = server;

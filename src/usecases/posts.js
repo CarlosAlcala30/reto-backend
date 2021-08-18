@@ -17,7 +17,7 @@ function updateById(id, newData) {
 }
 
 function getPostById(id){
-   return Post.findById(id).populate("author").populate("comments");
+   return Post.findById(id).populate("users").populate("comments");
 }
 
 module.exports = {

@@ -32,6 +32,7 @@ async function create (usersData) {
 function getById (id){
     return Users.findById(id)
 }
+
 module.exports = {
     getAll,
     deleteById,
