@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 
-const DB_USER = 'Carlos';
-const DB_PASSWORD = 'EUMtZZTG6J9bAeNX';
-const DB_HOST = 'kodemia-12va.7djcx.mongodb.net';
-const DB_NAME = 'devto';
+const {DB_USER,DB_PASSWORD,DB_HOST,DB_NAME} = process.env
 
 const url = `mongodb+srv://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`;
 
