@@ -24,14 +24,15 @@ router.get('/',isAuth, async (request, response) => {
     }
 })
 
-router.delete('/',isAuth, async (request, response) => {
+router.delete('/:id',isAuth, async (request, response) => {
     try {
-      const deleteUsers = await users.deleteById()
+        const { id } = request.params
+      const deleteUsers = await users.deleteById(id)
       response.json({
           success: true,
           message: 'delete user',
           data: {
-              users: allUsers
+              users: deleteUsers
           }
       })
     } catch (error) {
@@ -43,11 +44,70 @@ router.delete('/',isAuth, async (request, response) => {
         })
     }
 })
-/*
-    getAll,
-    deleteById,
-    updateById,
-    getById,
-    create*/
+
+router.patch('/:id',isAuth, async (request, response) => {
+    try {
+        const { id } = request.params
+      const updateUsers = await users.updateById(id)
+      response.json({
+          success: true,
+          message: 'user update',
+          data: {
+              users: updateUsers
+          }
+      })
+    } catch (error) {
+        response.status(400)
+        response.json({
+            success: false,
+            message: 'Error at update user',
+            error: error.message
+        })
+    }
+})
+
+router.get('/:id',isAuth, async (request, response) => {
+    try {
+        const { id } = request.params
+      const getUsersById = await users.getById(id)
+      response.json({
+          success: true,
+          message: 'get user',
+          data: {
+              users: getUsersById
+          }
+      })
+    } catch (error) {
+        response.status(400)
+        response.json({
+            success: false,
+            message: 'Error at get id users',
+            error: error.message
+        })
+    }
+})
+
+router.post('/', async (request, response) => {
+    try {
+        const {body} = request;
+        console.log(body);
+        const createUsers = await users.create(body)
+        response.json({
+            success: true,
+            message: 'user created',
+            data: {
+                users: createUsers
+            }
+        });
+      
+    } catch (error) {
+        response.status(400)
+        response.json({
+            success: false,
+            message: 'Error at create user',
+            error: error.message
+        })
+    }
+})
 
 module.exports = router;

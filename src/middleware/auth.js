@@ -4,8 +4,7 @@ function auth(request,response,next){
     try{
     const {authorization:token} = request.headers;
     const decodeToken = jwt.verify(token);
-    if(!isValidToken) throw new Error("Not Authorized");
-    console.log('data',decodeToken);
+    if(!decodeToken) throw new Error("Not Authorized");
     next();
     }catch(error){
         response.status(401);

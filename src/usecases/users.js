@@ -8,7 +8,7 @@ function getAll() {
  
 async function create (usersData) {
     const {email, password} = usersData
-    const usersFound =await users.findOne({email})
+    const usersFound =await Users.findOne({email})
     if(usersFound) throw new error ('email of users exist already')
  
     const encryptedPasword = await bcrypt.hash(password)

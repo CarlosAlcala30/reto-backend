@@ -1,11 +1,11 @@
 const Post = require('../models/posts')
 
 function getAll() {
-   return Post.find().populate("users").populate("comments")
+   return Post.find().populate("author").populate("comments");
 }
 
  function create (postData) {
-   return Post.create(postData)
+   return Post.create(postData).populate("author");
 }
 
 function deleteById(id) {
@@ -13,11 +13,11 @@ function deleteById(id) {
 }
 
 function updateById(id, newData) {
-    return Post.findByIdAndUpdate(id, newData, { new: true});
+    return Post.findByIdAndUpdate(id, newData, { new: true}).populate("author");
 }
 
 function getPostById(id){
-   return Post.findById(id).populate("users").populate("comments");
+   return Post.findById(id).populate("users").populate("comments").populate("author");
 }
 
 module.exports = {
