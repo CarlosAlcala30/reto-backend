@@ -5,8 +5,8 @@ function getAll() {
     return Comment.find().populate('author')
 }
 
-function create({ body, likes, author }) {
-    return Comment.create({ body, likes, author }).populate('author')
+function create(comment) {
+    return Comment.create(comment);
 }
 
 function deleteById(id) {
