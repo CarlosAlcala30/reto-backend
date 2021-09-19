@@ -5,18 +5,24 @@ const router = express.Router();
 router.post('/login',async(request,response)=>{
     try {
         const {email,password} = request.body;
-        const token = await auths.login(email,password);
+        const {name,lastName,picture,address,createdAt,token} = await auths.login(email,password);
         response.json({
             success: true,
             message: 'user logged in',
             data: {
-                token:token
+                name,
+                lastName,
+                email,
+                picture,
+                address,
+                createdAt,
+                token
             }
         });
     } catch (error) {
         response.status(400)
         response.json({
-            ssuccess: false,
+            success: false,
             message: 'Could not log in',
             error: {
                 error:error.message

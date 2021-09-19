@@ -6,7 +6,7 @@ dbConnect()
 .then(()=>{
     console.log("database connected");
     server.listen(8080,()=>{
-        console.log("Server listening...")
+        console.log("Server listening... port:8080")
     });
 })
 .catch(error => console.error(error));

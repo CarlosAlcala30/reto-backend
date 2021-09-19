@@ -4,7 +4,7 @@ const router = express.Router();
 
 const isAuth = require("../middleware/auth");
 
-router.get('/',isAuth, async (request, response) => {
+router.get('/', async (request, response) => {
     try {
         const AllComments = await comments.getAll()
         response.json({

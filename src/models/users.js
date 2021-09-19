@@ -3,13 +3,11 @@ const mongoose = require('mongoose');
 const usersSchema = new mongoose.Schema({
     name:{
         type:String,
-        required:true,
         minlength:2,
         maxLenght:50
     },
     lastName:{
         type:String,
-        required:true,
         minlength:2,
         maxLenght:50
     },
@@ -41,5 +39,6 @@ const usersSchema = new mongoose.Schema({
 });
 
 const model = mongoose.model('users',usersSchema);
+
 
 module.exports = model;

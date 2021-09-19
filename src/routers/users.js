@@ -5,6 +5,7 @@ const router = express.Router();
 const isAuth = require("../middleware/auth");
 
 router.get('/',isAuth, async (request, response) => {
+    
     try {
       const allUsers = await users.getAll()
       response.json({
@@ -90,7 +91,6 @@ router.get('/:id',isAuth, async (request, response) => {
 router.post('/', async (request, response) => {
     try {
         const {body} = request;
-        console.log(body);
         const createUsers = await users.create(body)
         response.json({
             success: true,

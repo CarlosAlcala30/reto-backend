@@ -4,7 +4,7 @@ const router = express.Router();
 
 const isAuth = require("../middleware/auth");
 
-router.get('/',isAuth, async (request, response) => {
+router.get('/', async (request, response) => {
     try {
       const allPosts = await posts.getAll()
       response.json({
@@ -91,7 +91,7 @@ router.patch('/:id',isAuth, async (request, response) => {
     }
 })
 
-router.get('/:id',isAuth, async (request, response) => {
+router.get('/:id', async (request, response) => {
     try {
         const {id} = request.params
         const getPostById = await posts.getPostById(id)
