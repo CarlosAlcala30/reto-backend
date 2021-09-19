@@ -32,7 +32,7 @@ router.post('/',isAuth, async (request, response) => {
              success: true,
              message: 'Post Created',
              data: {
-                 koder: postCreated
+                 post: postCreated
              }
          })
 
@@ -40,7 +40,7 @@ router.post('/',isAuth, async (request, response) => {
         response.status(400)
         response.json({
             success: false,
-            message: 'Error at create koder',
+            message: 'Error at create post',
             error: error.message
         })
     }
@@ -100,7 +100,7 @@ router.get('/:id', async (request, response) => {
             success: true,
             message: 'The requested post...',
             data: {
-                getPostById
+                post:getPostById
             }
         })
     }catch (error){

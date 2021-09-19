@@ -5,7 +5,7 @@ function getAll() {
 }
 
  function create (postData) {
-   return Post.create(postData).populate("author");
+   return Post.create(postData)
 }
 
 function deleteById(id) {
@@ -13,11 +13,11 @@ function deleteById(id) {
 }
 
 function updateById(id, newData) {
-    return Post.findByIdAndUpdate(id, newData, { new: true}).populate("author");
+    return Post.findByIdAndUpdate(id, newData, { new: true})
 }
 
 function getPostById(id){
-   return Post.findById(id).populate("users").populate("comments").populate("author");
+   return Post.findById(id).populate("comments").populate("author");
 }
 
 module.exports = {

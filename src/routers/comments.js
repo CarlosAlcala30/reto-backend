@@ -1,5 +1,5 @@
 const express = require('express')
-const comments = require('../usecases/comments.js')
+const comments = require('../usecases/comments')
 const router = express.Router();
 
 const isAuth = require("../middleware/auth");
